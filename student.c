@@ -124,7 +124,7 @@ Student reallot_seat(Student s, Program prg, Regnumber r, char pref1[], char pre
             strcpy(s.program, pref1);
             strcpy(s.admissionStatus, "alloted");
             fill_seat(prg, s.program);
-            allot_regnumber(s, r);
+            s = allot_regnumber(s, r);
         }
 
         else if (pref2_vacancy > 0)
@@ -132,7 +132,7 @@ Student reallot_seat(Student s, Program prg, Regnumber r, char pref1[], char pre
             strcpy(s.program, pref2);
             strcpy(s.admissionStatus, "alloted");
             fill_seat(prg, s.program);
-            allot_regnumber(s, r);
+            s = allot_regnumber(s, r);
         }
 
     }
@@ -179,4 +179,3 @@ else {
 
 }
 
-Student     new_student( char name[], char program[], char mail[], int32_t rank, float ugGrade );

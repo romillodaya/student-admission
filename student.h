@@ -43,7 +43,7 @@ struct _regnumber_
     int  es_number;
 };
 
-
+Regnumber update_reg(Regnumber reg_no, char prg[]);
 Program     program_seats( int8_t ml, int8_t bda, int8_t es ); 
 Student     new_student( char name[], char program[], char mail[], int32_t rank, float ugGrade );
 Student     allot_seat(Student s, Program prg, Regnumber r); 
