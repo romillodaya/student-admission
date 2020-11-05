@@ -4,6 +4,8 @@
 #ifndef STUDENT_H_INCLUDED
 #define STUDENT_H_INCLUDED
 
+int applications = 0;
+
 typedef struct _student_ Student;
 
 struct _student_
@@ -42,12 +44,12 @@ struct _regnumber_
 };
 
 
-Program     program_seats( int8_t ml, int8_t bda, int8_t es ); // Done this code
-Student     new_student( char name[], char program[], char mail[], int32_t rank, float ugGrade ); // Done this code
-Student     allot_seat(Student s, Program prg, Regnumber r); // Done
+Program     program_seats( int8_t ml, int8_t bda, int8_t es ); 
+Student     new_student( char name[], char program[], char mail[], int32_t rank, float ugGrade );
+Student     allot_seat(Student s, Program prg, Regnumber r); 
 Student     reallot_seat(Student s, Program prg, Regnumber r, char pref1[], char pre2[]);
-Regnumber   allot_regnumber(Student s, Regnumber r); // Done
-int         seats_filled(Program prg, char prg_name[]); // Done
+Student     allot_regnumber(Student s, Regnumber r); 
+int         seats_filled(Program prg, char prg_name[]);
 
 
 #endif // STUDENT_H_INCLUDED

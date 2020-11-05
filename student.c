@@ -17,7 +17,7 @@ Student new_student( char name[], char program[], char mail[], int32_t rank, flo
    s.regNumber = 0;
    s.entranceRank = rank;
    s.ugGrade = ugGrade;
-
+   applications = applications + 1;
    return s;
 }
 
@@ -61,7 +61,8 @@ Student allot_seat(Student s, Program prg, Regnumber r)
 
     if (s.ugGrade <= 5)
     {
-        strcpy(s.admissionStatus, "rejected");  
+        strcpy(s.admissionStatus, "rejected"); 
+        return s; 
     }
     else if (s.ugGrade > 5 && s.ugGrade <= 10 )
     {
@@ -69,12 +70,14 @@ Student allot_seat(Student s, Program prg, Regnumber r)
         {
             strcpy(s.admissionStatus, "alloted");
             fill_seat(prg, s.program);
-            allot_regnumber(s, r);
+            s = allot_regnumber(s, r);
+            return s;
         } 
 
         else if (vacancy = 0)
         {
             strcpy(s.admissionStatus, "waiting");
+            return s;
         }
     }   
 }
@@ -85,22 +88,25 @@ Regnumber initial_regnumber(int ml, int bda, int es)
     return r;
 }
 
-Regnumber allot_regnumber(Student s, Regnumber r)
+Student allot_regnumber(Student s, Regnumber r)
 {
     if (!strcmp(s.program, "ML"))
     {
         r.ml_number = r.ml_number + 1;
         s.regNumber = r.ml_number;
+        return s;
     }
      else if (!strcmp(s.program, "BDA"))
     {
         r.bda_number = r.bda_number + 1;
-        s.regNumber = r.bda_number;
+        s.regNumber = r.bda_number ;
+        return s;
     }
     else if (!strcmp(s.program, "ES"))
     {
         r.es_number = r.es_number + 1;
-        s.regNumber = r.es_number;
+        s.regNumber = r.es_number ;
+        return s;
     }
 
 }
@@ -132,3 +138,45 @@ Student reallot_seat(Student s, Program prg, Regnumber r, char pref1[], char pre
     }
 
 }
+
+int total_applications()
+{
+ return applications;
+}
+
+int latest_reg_number(Regnumber reg_no, char prg[])
+{
+     if (!strcmp(prg, "ML"))
+    {
+        return reg_no.ml_number;
+    }
+     else if (!strcmp(prg, "BDA"))
+    {
+        return reg_no.bda_number;
+    }
+     else if (!strcmp(prg, "ES"))
+    {
+        return reg_no.es_number;
+    }
+}
+
+int verify_details(Student s, char name[], char program[], char mail[], int32_t rank, float ugGrade, char status[], int regnumber)
+{
+if (!strcmp(s.name, name) && 
+    !strcmp(s.program, program) && \
+    !strcmp(s.mail, mail) && \
+    !strcmp(s.admissionStatus, status) && \
+    s.entranceRank == rank && \
+    s.ugGrade == ugGrade && \
+    s.regNumber == regnumber )
+{
+    return 1;
+}
+
+else {
+    return 0;
+}
+
+}
+
+Student     new_student( char name[], char program[], char mail[], int32_t rank, float ugGrade );
