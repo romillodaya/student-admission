@@ -32,11 +32,22 @@ struct _program_
     int8_t  es_seats_filled;
 };
 
-Program     program_seats( int8_t ml, int8_t bda, int8_t es );
-Student     new_student( char name[], char program[], char mail[], int32_t rank, int32_t ugGrade );
-Student     allot_seat(Student s);
-Student     reallot_seat(Student s);
-int         seats_filled(Program prg, char prg_name[]);
+typedef struct _regnumber_ Regnumber;
+
+struct _regnumber_
+{
+    int  ml_number;
+    int  bda_number;
+    int  es_number;
+};
+
+
+Program     program_seats( int8_t ml, int8_t bda, int8_t es ); // Done this code
+Student     new_student( char name[], char program[], char mail[], int32_t rank, float ugGrade ); // Done this code
+Student     allot_seat(Student s, Program prg, Regnumber r); // Done
+Student     reallot_seat(Student s, Program prg, Regnumber r, char pref1[], char pre2[]);
+Regnumber   allot_regnumber(Student s, Regnumber r); // Done
+int         seats_filled(Program prg, char prg_name[]); // Done
 
 
 #endif // STUDENT_H_INCLUDED
